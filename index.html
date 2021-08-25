@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CopyUtil</title>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+                integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" 
+                crossorigin="anonymous">
+        </script>
+        <script>
+            window.addEventListener("message", function (event) {
+                var eventName = event.data.type;
+                if (eventName === 'copyToClipboard') {
+                    copyTextToClipboard(event.data.text);
+                }
+            })
+
+            function copyTextToClipboard(text) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(text).select();
+                document.execCommand("copy");
+                $temp.remove();
+            }
+        </script>
+    </body>
+</html>
